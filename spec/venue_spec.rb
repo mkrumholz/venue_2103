@@ -66,4 +66,33 @@ describe Venue do
       expect(venue.over_capacity?).to be false
     end
   end
+
+  describe '#kick_out' do
+    it 'removes all patrons exceeding capacity' do
+      venue = Venue.new('Bluebird', 4)
+      venue.add_patron('Mike')
+      venue.add_patron('Megan')
+      venue.add_patron('Bob')
+      venue.add_patron('James')
+      venue.add_patron('Cat')
+      venue.add_patron('Lue')
+
+      expect(venue.over_capacity?).to be true
+      venue.kick_out
+      expect(venue.over_capacity?).to be false
+    end
+
+    it 'it removes the excess patrons from the patrons list' do
+      venue = Venue.new('Bluebird', 4)
+      venue.add_patron('Mike')
+      venue.add_patron('Megan')
+      venue.add_patron('Bob')
+      venue.add_patron('James')
+      venue.add_patron('Cat')
+      venue.add_patron('Lue')
+
+      venue.kick_out
+      expect(venue.patrons).to eq ['Mike', 'Megan', 'Bob', 'James']
+    end
+  end
 end

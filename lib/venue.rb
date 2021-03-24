@@ -23,4 +23,10 @@ class Venue
     return true if @patrons.length > @capacity
     false
   end
+
+  def kick_out
+    while self.over_capacity? == true
+      patrons.pop
+    end
+  end
 end
