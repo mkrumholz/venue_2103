@@ -6,4 +6,16 @@ class Venue
     @capacity = capacity
     @patrons = []
   end
+
+  def add_patron(patron)
+    @patrons << patron
+  end
+
+  def yell_at_patrons
+    patrons_to_yell_at = []
+    @patrons.each do |patron|
+      patrons_to_yell_at << patron.upcase
+    end
+    return patrons_to_yell_at
+  end
 end
